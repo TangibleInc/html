@@ -66,7 +66,10 @@ export function element(node, index, parent, state) {
   let selfClosing =
     schema.space === 'svg'
       ? state.settings.closeEmptyElements
-      : state.settings.voids.includes(node.tagName.toLowerCase())
+      : state.settings.voids.includes(
+        node.tagName // .toLowerCase()
+      )
+
   /** @type {Array<string>} */
   const parts = []
   /** @type {string} */

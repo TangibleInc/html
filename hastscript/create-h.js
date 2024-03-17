@@ -96,7 +96,7 @@ export function createH(schema, defaultTagName, caseSensitive) {
     } else {
       node = parseSelector(selector, defaultTagName)
       // Normalize the name.
-      node.tagName = node.tagName.toLowerCase()
+      // node.tagName = node.tagName.toLowerCase()
       if (adjust && own.call(adjust, node.tagName)) {
         node.tagName = adjust[node.tagName]
       }
