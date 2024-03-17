@@ -68,15 +68,14 @@ export default function rehypeMinifyWhitespace(options) {
   const collapse = collapseFactory(
     settings.newlines ? replaceNewlines : replaceWhitespace
   )
-
   /**
    * @param {Root} tree
    *   Tree.
    * @returns {undefined}
    *   Nothing.
-   */
-  return function (tree) {
-    minify(tree, {collapse, whitespace: 'normal'})
+  */
+ return function (tree, minifyOptions) {
+    minify(tree, {collapse, whitespace: 'normal'}, minifyOptions)
   }
 }
 
@@ -88,8 +87,9 @@ export default function rehypeMinifyWhitespace(options) {
  * @returns {Result}
  *   Result.
  */
-function minify(node, state) {
-  if ('children' in node) {
+function minify(node, state, options) {
+
+  if (('children' in node) && (!options?.closedTags.includes(node.tagName))) {
     const settings = {...state}
 
     if (node.type === 'root' || blocklike(node)) {
@@ -99,8 +99,9 @@ function minify(node, state) {
 
     settings.whitespace = inferWhiteSpace(node, state)
 
-    return all(node, settings)
+    return all(node, settings, options)
   }
+
 
   if (node.type === 'text') {
     if (state.whitespace === 'normal') {
@@ -162,7 +163,7 @@ function minifyText(node, state) {
  * @returns {Result}
  *   Result.
  */
-function all(parent, state) {
+function all(parent, state, options) {
   let before = state.before
   const after = state.after
   const children = parent.children
@@ -174,7 +175,7 @@ function all(parent, state) {
       ...state,
       after: collapsableAfter(children, index, after),
       before
-    })
+    }, options)
 
     if (result.remove) {
       children.splice(index, 1)

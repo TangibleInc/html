@@ -202,11 +202,14 @@ export function toHtml(tree, options) {
       tightSelfClosing: options_.tightSelfClosing || false,
       collapseEmptyAttributes: options_.collapseEmptyAttributes || false,
       allowDangerousHtml: options_.allowDangerousHtml || false,
-      voids: options_.voids || htmlVoidElements,
       characterReferences:
-        options_.characterReferences || emptyCharacterReferences,
+      options_.characterReferences || emptyCharacterReferences,
       closeSelfClosing: options_.closeSelfClosing || false,
-      closeEmptyElements: options_.closeEmptyElements || false
+
+      voids: options_.voids || htmlVoidElements,
+      closeEmptyElements: options_.closeEmptyElements || false,
+
+      closedTags: options_.closedTags || []
     },
     schema: options_.space === 'svg' ? svg : html,
     quote,

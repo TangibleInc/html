@@ -67,8 +67,8 @@ export function element(node, index, parent, state) {
     schema.space === 'svg'
       ? state.settings.closeEmptyElements
       : state.settings.voids.includes(
-        node.tagName // .toLowerCase()
-      )
+          node.tagName // .toLowerCase()
+        )
 
   /** @type {Array<string>} */
   const parts = []
@@ -87,6 +87,15 @@ export function element(node, index, parent, state) {
 
   state.schema = schema
 
+  let closeSelfClosing = (schema.space === 'svg' || state.settings.closeSelfClosing)
+
+  if (state.settings.closedTags
+    && state.settings.closedTags.includes(node.tagName)
+  ) {
+    selfClosing = true
+    closeSelfClosing = true
+  }
+
   // If the node is categorised as void, but it has children, remove the
   // categorisation.
   // This enables for example `menuitem`s, which are void in W3C HTML but not
@@ -98,10 +107,7 @@ export function element(node, index, parent, state) {
   if (attrs || !omit || !opening(node, index, parent)) {
     parts.push('<', node.tagName, attrs ? ' ' + attrs : '')
 
-    if (
-      selfClosing &&
-      (schema.space === 'svg' || state.settings.closeSelfClosing)
-    ) {
+    if (selfClosing && closeSelfClosing) {
       last = attrs.charAt(attrs.length - 1)
       if (
         !state.settings.tightSelfClosing ||

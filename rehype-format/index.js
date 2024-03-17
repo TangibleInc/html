@@ -24,7 +24,7 @@ import {isElement} from 'hast-util-is-element'
 import {phrasing} from 'hast-util-phrasing'
 import {whitespace} from 'hast-util-whitespace'
 import {whitespaceSensitiveTagNames} from '../html-whitespace-sensitive-tag-names'
-import rehypeMinifyWhitespace from 'rehype-minify-whitespace'
+import rehypeMinifyWhitespace from '../rehype-minify-whitespace'
 import {SKIP, visitParents} from 'unist-util-visit-parents'
 
 /** @type {Options} */
@@ -65,7 +65,7 @@ export default function rehypeFormat(options) {
     /** @type {boolean | undefined} */
     let head
 
-    transformWhitespace(tree)
+    transformWhitespace(tree, settings.minifyOptions)
 
     // eslint-disable-next-line complexity
     visitParents(tree, function (node, parents) {
