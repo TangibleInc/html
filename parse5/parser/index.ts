@@ -2277,7 +2277,14 @@ function genericStartTagInBody<T extends TreeAdapterTypeMap>(p: Parser<T>, token
 }
 
 function startTagInBody<T extends TreeAdapterTypeMap>(p: Parser<T>, token: TagToken): void {
-    switch (token.tagID) {
+
+  if (p.options?.closedTags.includes(token.tagName)) {
+    token.ackSelfClosing = true
+    areaStartTagInBody(p, token)
+    return
+  }
+
+  switch (token.tagID) {
         case $.I:
         case $.S:
         case $.B:
