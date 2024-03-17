@@ -152,7 +152,7 @@
  *   Alternative quote.
  */
 
-import {htmlVoidElements} from 'html-void-elements'
+import {htmlVoidElements} from '../html-void-elements'
 import {html, svg} from 'property-information'
 import {handle} from './handle/index.js'
 

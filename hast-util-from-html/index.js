@@ -92,11 +92,11 @@ export function fromHtml(value, options) {
   const fn = settings.fragment ? parseFragment : parse
   const doc = String(file)
   const p5doc = fn(doc, {
-    sourceCodeLocationInfo: true,
+    sourceCodeLocationInfo: settings.sourceCodeLocationInfo,
     // Note `parse5` types currently do not allow `undefined`.
     onParseError: settings.onerror ? internalOnerror : null,
     scriptingEnabled: false,
-    ...(settings.parserOptions ?? {})
+    ...(settings.language ?? {})
   })
 
   // `parse5` returns document which are always mapped to roots.

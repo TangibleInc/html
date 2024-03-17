@@ -2278,7 +2278,7 @@ function genericStartTagInBody<T extends TreeAdapterTypeMap>(p: Parser<T>, token
 
 function startTagInBody<T extends TreeAdapterTypeMap>(p: Parser<T>, token: TagToken): void {
 
-  if (p.options?.closedTags.includes(token.tagName)) {
+  if (p.options && p.options.closedTags?.includes(token.tagName)) {
     token.ackSelfClosing = true
     areaStartTagInBody(p, token)
     return

@@ -19,6 +19,13 @@
  *   `<html>`, thus not indenting `head` and `body`.
  */
 
+export type Options = {
+  blanks?: string[]
+  indent?: number | string
+  indentInitial?: boolean
+  language: any
+}
+
 import {embedded} from 'hast-util-embedded'
 import {isElement} from 'hast-util-is-element'
 import {phrasing} from 'hast-util-phrasing'
@@ -65,7 +72,7 @@ export default function rehypeFormat(options) {
     /** @type {boolean | undefined} */
     let head
 
-    transformWhitespace(tree, settings.minifyOptions)
+    transformWhitespace(tree, settings.language)
 
     // eslint-disable-next-line complexity
     visitParents(tree, function (node, parents) {

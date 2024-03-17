@@ -5,7 +5,7 @@
  * @typedef {import('../index.js').State} State
  */
 
-import {zwitch} from 'zwitch'
+import {zwitch} from '../../zwitch'
 import {comment} from './comment.js'
 import {doctype} from './doctype.js'
 import {element} from './element.js'
