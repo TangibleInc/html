@@ -58,8 +58,8 @@
  */
 
 import {ok as assert} from 'devlop'
-import {fromParse5} from 'hast-util-from-parse5'
-import {parse, parseFragment} from 'parse5'
+import {fromParse5} from '../hast-util-from-parse5'
+import {parse, parseFragment} from '../parse5'
 import {VFile} from 'vfile'
 import {VFileMessage} from 'vfile-message'
 import {errors} from './errors.js'

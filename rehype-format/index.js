@@ -23,7 +23,7 @@ import {embedded} from 'hast-util-embedded'
 import {isElement} from 'hast-util-is-element'
 import {phrasing} from 'hast-util-phrasing'
 import {whitespace} from 'hast-util-whitespace'
-import {whitespaceSensitiveTagNames} from 'html-whitespace-sensitive-tag-names'
+import {whitespaceSensitiveTagNames} from '../html-whitespace-sensitive-tag-names'
 import rehypeMinifyWhitespace from 'rehype-minify-whitespace'
 import {SKIP, visitParents} from 'unist-util-visit-parents'
 

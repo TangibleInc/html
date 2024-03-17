@@ -63,7 +63,7 @@
  */
 
 import {ok as assert} from 'devlop'
-import {h, s} from 'hastscript'
+import {h, s} from '../hastscript'
 import {find, html, svg} from 'property-information'
 import {location} from 'vfile-location'
 import {webNamespaces} from 'web-namespaces'

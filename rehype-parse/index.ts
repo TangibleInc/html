@@ -18,7 +18,7 @@
  *   > Some documentation may still be missing.
  */
 
-import {fromHtml} from 'hast-util-from-html'
+import {fromHtml} from '../hast-util-from-html'
 
 /**
  * Plugin to add support for parsing from HTML.

@@ -4,7 +4,7 @@
  * @typedef {import('unified').Compiler<Root, string>} Compiler
  */
 
-import {toHtml} from 'hast-util-to-html'
+import {toHtml} from '../hast-util-to-html'
 
 /**
  * Plugin to add support for serializing as HTML.
