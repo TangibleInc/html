@@ -96,7 +96,7 @@ export function fromHtml(value, options) {
     // Note `parse5` types currently do not allow `undefined`.
     onParseError: settings.onerror ? internalOnerror : null,
     scriptingEnabled: false,
-    ...(settings.language ?? {})
+    closedTags: settings?.closedTags ?? []
   })
 
   // `parse5` returns document which are always mapped to roots.

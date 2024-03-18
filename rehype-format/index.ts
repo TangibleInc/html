@@ -23,7 +23,7 @@ export type Options = {
   blanks?: string[]
   indent?: number | string
   indentInitial?: boolean
-  language: any
+  closedTags: string[]
 }
 
 import {embedded} from 'hast-util-embedded'
@@ -72,7 +72,9 @@ export default function rehypeFormat(options) {
     /** @type {boolean | undefined} */
     let head
 
-    transformWhitespace(tree, settings.language)
+    transformWhitespace(tree, {
+      closedTags: settings.closedTags
+    })
 
     // eslint-disable-next-line complexity
     visitParents(tree, function (node, parents) {

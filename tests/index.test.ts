@@ -1,10 +1,14 @@
 import fs from 'node:fs/promises'
 import { expect, test, describe, afterAll } from 'bun:test'
-import { parse, render, format } from '../index'
+import eleme from '../index'
 
 const { dirname } = import.meta
 const testContent = await fs.readFile(`${dirname}/test-1.html`, 'utf-8')
 const testContentTree = JSON.parse(await fs.readFile(`${dirname}/test-1-parse.json`, 'utf-8'))
+
+const { parse, render, format } = eleme({
+  closedTags: ['Else', 'Field'],
+})
 
 describe('parse', () => {
 
