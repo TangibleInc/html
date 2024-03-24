@@ -10,61 +10,47 @@ export type Language = {
   closedTags?: string[]
 }
 
+export const language: Language = {
+  closedTags: [],
+}
+
 export type ParseOptions = ParserOptions & {
   document?: boolean
   sourceCodeLocationInfo?: boolean
 }
 
 export type { FormatOptions }
+export type { Root }
 
-export default create
-
-export function create(newLanguage: Language): {
-  parse(content: string, options?: ParseOptions): Root
-  format(rootNode: Root): Root
-  render(rootNode: Root): string
-} {
-
-  const {
-    closedTags = []
-  } = newLanguage
-
-  function parse(content: string, options?: ParseOptions): Root {
-    return fromHtml(content, {
-      document: false,
-      fragment: !options?.document,
-      closedTags,
-      ...options,
-    })
-  }
-
-  const formatter = rehypeFormat({
-    closedTags
+export function parse(content: string, options?: ParseOptions): Root {
+  return fromHtml(content, {
+    document: false,
+    fragment: !options?.document,
+    closedTags: language.closedTags,
+    ...options,
   })
+}
 
-  function format(rootNode: Root): Root {
-    formatter(rootNode)
-    return rootNode
-  }
+const formatter = rehypeFormat({
+  closedTags: language.closedTags,
+})
 
-  const renderOptions = {
-    allowDangerousHtml: true,
-    // allowParseErrors: true,
-    closeEmptyElements: true,
-    collapseEmptyAttributes: true,
-    preferUnquoted: true,
+export function format(rootNode: Root): Root {
+  formatter(rootNode)
+  return rootNode
+}
 
-    closeSelfClosing: false,
-    closedTags,
-  }
+const renderOptions = {
+  allowDangerousHtml: true,
+  // allowParseErrors: true,
+  closeEmptyElements: true,
+  collapseEmptyAttributes: true,
+  preferUnquoted: true,
 
-  function render(rootNode: Root): string {
-    return toHtml(rootNode, renderOptions)
-  }
+  closeSelfClosing: false,
+  closedTags: language.closedTags,
+}
 
-  return {
-    parse,
-    format,
-    render,
-  }
+export function render(rootNode: Root): string {
+  return toHtml(rootNode, renderOptions)
 }

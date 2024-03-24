@@ -1,16 +1,16 @@
 {
-  "name": "eleme",
+  "name": "@tangible/html",
   "version": "2.0.0",
   "description": "Parse, render, and beautify HTML templates with extensible syntax",
   "type": "module",
   "main": "index.ts",
-  "homepage": "https://github.com/expreva/eleme",
+  "homepage": "https://github.com/tangibleinc/html",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/expreva/eleme.git"
+    "url": "git+https://github.com/tangibleinc/html.git"
   },
   "scripts": {
-    "test": "bun test tests"
+    "test": "tsx tests/index.ts"
   },
   "dependencies": {
     "@types/hast": "^3.0.4",
@@ -33,9 +33,7 @@
     "web-namespaces": "^2.0.1"
   },
   "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+    "testra": "^2.0.0",
+    "tsx": "^4.7.1"
   }
 }
